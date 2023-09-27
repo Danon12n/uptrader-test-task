@@ -2,6 +2,7 @@
 
 import './project.scss';
 import Column from '../components/column/column';
+import { Link } from 'react-router-dom';
 
 type TTodo = {
   number: number;
@@ -20,9 +21,11 @@ export default function ProjectPage() {
   return (
     <div>
       <div className='topMenu__container'>
-        <p>Home</p>
+        <Link to={'/'}>
+          <p>Home</p>
+        </Link>
         <p>Project Title</p>
-        <p>Current time</p>
+        <p>{new Date().toLocaleDateString()}</p>
       </div>
       <div className='columns__container'>
         <Column title='Queue' />

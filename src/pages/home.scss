@@ -1,0 +1,19 @@
+.projects__list{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+    
+}
+
+.projects__list__link {
+    text-decoration: none;
+    font-size: 40px;
+    color: black;
+    font-weight: bold;
+}
+
+.projects__list__link:hover {
+    text-decoration: underline;
+}

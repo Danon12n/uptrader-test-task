@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Modal from '../../modal/modal';
+import Modal from '../modal/modal';
 import './column-card.scss';
 
 type Props = {};
@@ -9,7 +9,7 @@ export default function ColumnCard({}: Props) {
   return (
     <div
       className='column__card'
-      onClick={(e) => {
+      onClick={() => {
         setShowModal(true);
         console.log('setShowModalTrueClicked');
       }}
