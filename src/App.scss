@@ -1,0 +1,9 @@
+.App__container{
+    width: 100vw;
+    height: 100vh;
+
+    background: #dddddd;
+    background: radial-gradient(circle farthest-corner at center center, #dddddd 0%, rgba(76,173,236,0.5) 100%);
+    background: -webkit-radial-gradient(circle farthest-corner at center center, #dddddd 0%, rgba(76,173,236,0.5) 100%);
+    background: -moz-radial-gradient(circle farthest-corner at center center, #dddddd 0%, rgba(76,173,236,0.5) 100%);
+}

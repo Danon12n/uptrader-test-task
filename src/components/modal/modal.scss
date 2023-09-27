@@ -1,0 +1,31 @@
+
+.Modal__wrapper {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    padding: 20px;
+
+    border-radius: 15px;
+
+    background: white;
+
+
+}
+
+.Modal__overlay {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    
+
+    position: fixed;
+    top: 0;
+    left: 0;
+}

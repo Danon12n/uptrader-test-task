@@ -1,0 +1,19 @@
+.column {
+    display: flex;
+    flex-direction: column;
+
+    border-radius: 15px;
+    padding: 15px;
+    gap: 10px;
+    background: white;
+
+    width: 300px;
+}
+
+.column__title {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+
+    margin: 10px;
+}
