@@ -4,19 +4,6 @@ import './project.scss';
 import Column from '../components/column/column';
 import { Link } from 'react-router-dom';
 
-type TTodo = {
-  number: number;
-  title: string;
-  description: string;
-  status: 'Queue' | 'Development' | 'Done';
-  priority: 'low' | 'medium' | 'high';
-  creationDate: number;
-  workingTime: number;
-  completeDate?: number;
-  subTodos: [];
-  comments: string[];
-};
-
 export default function ProjectPage() {
   return (
     <div>
