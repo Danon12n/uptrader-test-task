@@ -1,0 +1,29 @@
+.cardEditor__container{
+    display: flex;
+    flex-direction: column;
+    min-width: 700px;
+    min-height: 700px;
+    gap: 20px;
+}
+.cardEditor__title{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.cardEditor__title h1{
+    margin: 0;
+    padding: 0;
+}
+.cardEditor__title p{
+    margin: 0;
+    padding: 0;
+}
+
+.cardEditor__textEditorPreview {
+    height: 60px;
+    border: 1px solid black;
+    padding: 5px;
+    cursor: pointer;
+
+}

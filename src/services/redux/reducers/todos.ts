@@ -102,6 +102,13 @@ export function todos(state = initialState, action: TTodoAction) {
         freeTodoNumbers.shift();
       }
       return { ...state, todos: [...state.todos, newTodo] };
+    case 'UPDATE_TODO':
+      const updatedTodos = [...state.todos].filter((todo) => todo.number !== action.payload.number);
+      updatedTodos.push(action.payload.todo);
+      return {
+        ...state,
+        todos: [...updatedTodos],
+      };
     case 'DELETE_TODO':
       const newTodos = [...state.todos].filter((todo) => {
         if (todo.number === action.payload) {
