@@ -14,7 +14,8 @@ const initialState: TTodosState = {
       description: '',
       status: 'Queue',
       priority: 'low',
-      creationDate: new Date(2453473452224),
+      creationDate: new Date(1695559452232),
+      subTodos: [],
     },
     {
       number: 2,
@@ -22,7 +23,8 @@ const initialState: TTodosState = {
       description: '',
       status: 'Done',
       priority: 'medium',
-      creationDate: new Date(3453473452224),
+      creationDate: new Date(1695669452232),
+      subTodos: [],
     },
     {
       number: 3,
@@ -30,7 +32,8 @@ const initialState: TTodosState = {
       description: '',
       status: 'Queue',
       priority: 'high',
-      creationDate: new Date(13534734522324),
+      creationDate: new Date(1695779452232),
+      subTodos: [],
     },
     {
       number: 4,
@@ -38,7 +41,8 @@ const initialState: TTodosState = {
       description: '',
       status: 'Done',
       priority: 'low',
-      creationDate: new Date(2453473452224),
+      creationDate: new Date(1695889452232),
+      subTodos: [],
     },
     {
       number: 5,
@@ -46,7 +50,8 @@ const initialState: TTodosState = {
       description: '',
       status: 'Development',
       priority: 'medium',
-      creationDate: new Date(3453473452224),
+      creationDate: new Date(1695999452232),
+      subTodos: [],
     },
     {
       number: 6,
@@ -54,7 +59,8 @@ const initialState: TTodosState = {
       description: '',
       status: 'Queue',
       priority: 'high',
-      creationDate: new Date(13534734522324),
+      creationDate: new Date(1695479452232),
+      subTodos: [],
     },
     {
       number: 7,
@@ -62,7 +68,8 @@ const initialState: TTodosState = {
       description: '',
       status: 'Queue',
       priority: 'low',
-      creationDate: new Date(2453473452224),
+      creationDate: new Date(1694459452232),
+      subTodos: [],
     },
     {
       number: 8,
@@ -70,7 +77,8 @@ const initialState: TTodosState = {
       description: '',
       status: 'Development',
       priority: 'medium',
-      creationDate: new Date(3453473452224),
+      creationDate: new Date(1693359452232),
+      subTodos: [],
     },
     {
       number: 9,
@@ -78,7 +86,8 @@ const initialState: TTodosState = {
       description: '',
       status: 'Queue',
       priority: 'high',
-      creationDate: new Date(13534734522324),
+      creationDate: new Date(1692259452232),
+      subTodos: [],
     },
     {
       number: 10,
@@ -86,7 +95,8 @@ const initialState: TTodosState = {
       description: '',
       status: 'Development',
       priority: 'high',
-      creationDate: new Date(13534734522324),
+      creationDate: new Date(1691159452232),
+      subTodos: [],
     },
   ],
 };
@@ -117,11 +127,60 @@ export function todos(state = initialState, action: TTodoAction) {
           return todo;
         }
       });
-      console.log(newTodos);
 
       return {
         ...state,
         todos: [...newTodos],
+      };
+    case 'ADD_SUBTODO':
+      return {
+        ...state,
+        todos: [
+          ...state.todos.map((todo) => {
+            if (todo.number === action.payload.number) {
+              todo.subTodos?.push(action.payload.subtodo);
+            }
+            return todo;
+          }),
+        ],
+      };
+    case 'UPDATE_SUBTODO_TITLE':
+      return {
+        ...state,
+        todos: [
+          ...state.todos.map((todo) => {
+            if (todo.number === action.payload.number) {
+              if (todo.subTodos) todo.subTodos[action.payload.index].title = action.payload.title;
+            }
+            return todo;
+          }),
+        ],
+      };
+    case 'UPDATE_SUBTODO_STATUS':
+      return {
+        ...state,
+        todos: [
+          ...state.todos.map((todo) => {
+            if (todo.number === action.payload.number) {
+              if (todo.subTodos)
+                todo.subTodos[action.payload.index].done =
+                  !todo.subTodos[action.payload.index].done;
+            }
+            return todo;
+          }),
+        ],
+      };
+    case 'DELETE_SUBTODO':
+      return {
+        ...state,
+        todos: [
+          ...state.todos.map((todo) => {
+            if (todo.number === action.payload.number) {
+              todo.subTodos?.splice(action.payload.index, 1);
+            }
+            return todo;
+          }),
+        ],
       };
     default:
       return state;

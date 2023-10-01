@@ -9,7 +9,6 @@ import CardEditor from './components/card-editor/card-editor';
 function App() {
   const { state } = useLocation();
   let background = state && state.background;
-  console.log(background);
 
   return (
     <div className='App__container'>
@@ -24,7 +23,6 @@ function App() {
             background && (
               <Modal
                 onClose={() => {
-                  console.log('close');
                   history.back();
                 }}
               >

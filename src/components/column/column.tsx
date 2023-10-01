@@ -25,7 +25,11 @@ export default function Column({ title = 'Queue' }: Props) {
       creationDate: new Date(),
       comments: ['lol kek'],
       attachedFiles: ['cool file'],
-      subTodos: ['do todo sub'],
+      subTodos: [
+        { title: 'job1', done: false },
+        { title: 'job2', done: true },
+        { title: 'job3', done: false },
+      ],
     };
     boundTodoActions.addTodo(newCard);
   };

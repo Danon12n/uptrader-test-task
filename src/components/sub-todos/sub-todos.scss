@@ -1,0 +1,28 @@
+.subTodos__container {
+}
+
+.subTodo {
+  display: flex;
+  gap: 10px;
+  font-size: 20px;
+  justify-content: space-between;
+
+  p {
+    margin: 0;
+    padding: 0;
+  }
+
+  & &__title {
+    display: flex;
+
+    width: 50%;
+  }
+}
+
+.green {
+  color: green;
+}
+
+.red {
+  color: red;
+}

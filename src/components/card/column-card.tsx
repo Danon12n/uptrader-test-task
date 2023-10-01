@@ -19,7 +19,7 @@ export default function ColumnCard({ card }: Props) {
         {card.description && <FiType size={25} />}
         {card.comments && <FiMessageSquare size={25} />}
         {card.attachedFiles && <FiFile size={25} />}
-        {card.subTodos && <FiList size={25} />}
+        {card.subTodos.length !== 0 && <FiList size={25} />}
       </div>
       <p>{card.creationDate.toLocaleDateString()}</p>
       <p>

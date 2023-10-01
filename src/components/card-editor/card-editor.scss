@@ -7,19 +7,29 @@
 }
 .cardEditor__title{
     display: flex;
-    flex-direction: column;
-    gap: 10px;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .cardEditor__title h1{
     margin: 0;
     padding: 0;
 }
-.cardEditor__title p{
+
+.cardEditor__title input{
+    margin: 0;
+    padding: 0;
+    border: solid gray 2px;
+    border-radius: 5px;
+    padding: 5px;
+    font-weight: bold;
+    font-size: 32px;
+}
+
+.cardEditor__subtitle{
     margin: 0;
     padding: 0;
 }
-
 .cardEditor__textEditorPreview {
     height: 60px;
     border: 1px solid black;

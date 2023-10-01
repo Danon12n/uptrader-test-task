@@ -27,8 +27,6 @@ export default function Modal({ children, onClose }: Props) {
       className='Modal__overlay'
       onClick={(e) => {
         e.stopPropagation();
-        console.log('click');
-
         onClose();
       }}
     >
