@@ -10,10 +10,12 @@
 
 .columns__container{
     display: flex;
-    justify-content: center;
-    gap: 30px;
+    justify-content: space-around;
 
     padding: 15px;
+    height:88%;
+
+    overflow: hidden;
 
 }
 

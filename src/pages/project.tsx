@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 export default function ProjectPage() {
   return (
-    <div>
+    <>
       <div className='topMenu__container'>
         <Link to={'/'}>
           <p>Home</p>
@@ -19,6 +19,6 @@ export default function ProjectPage() {
         <Column title='Development' />
         <Column title='Done' />
       </div>
-    </div>
+    </>
   );
 }

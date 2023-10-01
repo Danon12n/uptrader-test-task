@@ -7,7 +7,10 @@
     gap: 10px;
     background: white;
 
-    width: 300px;
+    width: 400px;
+    height: 95%;
+
+   
 }
 
 .column__title {
@@ -16,4 +19,7 @@
     text-align: center;
 
     margin: 10px;
+}
+.column__cardList {
+    overflow-y:scroll ;
 }

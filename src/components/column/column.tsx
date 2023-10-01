@@ -1,44 +1,47 @@
 import { Link, useLocation } from 'react-router-dom';
 import ColumnCard from '../card/column-card';
 import './column.scss';
-import { TTodoCard } from '../../utils/types';
-import { useState } from 'react';
+import { TStatus, TTodoCard } from '../../utils/types';
 import { useSelector } from 'react-redux';
 import { TTodosState } from '../../services/redux/reducers/todos';
 import { TStore } from '../../services/redux/reducers';
+import { boundTodoActions } from '../../services/redux/action/todos';
 type Props = {
-  title?: string;
+  title: TStatus;
 };
 
-export default function Column({ title = 'no title' }: Props) {
+export default function Column({ title = 'Queue' }: Props) {
   const location = useLocation();
 
-  const columnCards = useSelector<TStore, TTodosState>((store) => store.todos);
+  const { todos } = useSelector<TStore, TTodosState>((store) => store.todos);
 
-  const CreateCard = () => {
+  const CreateTodo = () => {
     const newCard: TTodoCard = {
       number: 1,
       title: 'new Card',
       description: '',
-      status: 'Queue',
+      status: title,
       priority: 'low',
       creationDate: new Date(),
     };
-
-    // setColumnCards([...columnCards, newCard]);
+    boundTodoActions.addTodo(newCard);
   };
 
   return (
     <div className='column'>
       <p className='column__title'>{title}</p>
-      {columnCards.map((card) => {
-        return (
-          <Link to={`card/${card.number}`} state={{ background: location }}>
-            <ColumnCard card={card} />
-          </Link>
-        );
-      })}
-      <button onClick={CreateCard}>Add more cards</button>
+      <div className='column__cardList'>
+        {todos.map((todo) => {
+          if (todo.status === title) {
+            return (
+              <Link to={`card/${todo.number}`} state={{ background: location }}>
+                <ColumnCard card={todo} />
+              </Link>
+            );
+          }
+        })}
+      </div>
+      <button onClick={CreateTodo}>Add todo</button>
     </div>
   );
 }
