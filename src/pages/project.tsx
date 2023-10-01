@@ -8,7 +8,7 @@ export default function ProjectPage() {
   return (
     <>
       <div className='topMenu__container'>
-        <Link to={'/'}>
+        <Link className='link' to={'/'}>
           <p>Home</p>
         </Link>
         <p>Project Title</p>

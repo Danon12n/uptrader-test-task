@@ -19,10 +19,13 @@ export default function Column({ title = 'Queue' }: Props) {
     const newCard: TTodoCard = {
       number: 1,
       title: 'new Card',
-      description: '',
+      description: 'asdasd',
       status: title,
-      priority: 'low',
+      priority: 'medium',
       creationDate: new Date(),
+      comments: ['lol kek'],
+      attachedFiles: ['cool file'],
+      subTodos: ['do todo sub'],
     };
     boundTodoActions.addTodo(newCard);
   };
@@ -34,14 +37,20 @@ export default function Column({ title = 'Queue' }: Props) {
         {todos.map((todo) => {
           if (todo.status === title) {
             return (
-              <Link to={`card/${todo.number}`} state={{ background: location }}>
+              <Link
+                className='column__link'
+                to={`card/${todo.number}`}
+                state={{ background: location }}
+              >
                 <ColumnCard card={todo} />
               </Link>
             );
           }
         })}
       </div>
-      <button onClick={CreateTodo}>Add todo</button>
+      <button className='column__button' onClick={CreateTodo}>
+        Add todo
+      </button>
     </div>
   );
 }

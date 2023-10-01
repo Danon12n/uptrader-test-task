@@ -6,8 +6,9 @@ export type TTodoCard = {
   priority: 'low' | 'medium' | 'high';
   creationDate: Date;
   completeDate?: Date;
-  subTodos?: [];
+  subTodos?: string[];
   comments?: string[];
+  attachedFiles?: string[];
 };
 
 export type TStatus = 'Queue' | 'Development' | 'Done';

@@ -4,8 +4,8 @@
 
     border-radius: 15px;
     padding: 15px;
-    gap: 10px;
-    background: white;
+    gap: 15px;
+    background: #ece8df;
 
     width: 400px;
     height: 95%;
@@ -21,5 +21,30 @@
     margin: 10px;
 }
 .column__cardList {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 10px 0;
     overflow-y:scroll ;
+}
+
+.column__link {
+    text-decoration: none;
+}
+
+.column__button {
+    background: #e1d7cd;
+    border: none;
+    outline: none;
+    border-radius: 15px;
+    padding: 10px 0;
+    transition: 0.25s ease-in-out;
+}
+
+.column__button:hover {
+    background: #e0d1c2;
+}
+
+.column__button:active {
+    opacity: 0.5;
 }

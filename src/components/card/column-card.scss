@@ -1,10 +1,28 @@
 .column__card {
     padding: 5px;
-    border-radius: 5px;
+    border-radius: 15px;
     box-shadow: 1px 1px 1px 1px #091E4240, 1px 1px 1px 1px #091E424F;
+
+    background: #e1d7cd;
+
+
+    color: black;
+}
+
+.column__card__title {
+    margin: 0;
+    padding: 5px;
+    font-size: 22px;
 }
 
 .column__card:hover {
-    text-decoration: underline blue;
     cursor: pointer;
+    font-weight: bold;
+}
+
+.column__card__signsList {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 30px;
 }
