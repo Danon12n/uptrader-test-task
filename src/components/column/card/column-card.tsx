@@ -1,5 +1,5 @@
-import { boundTodoActions } from '../../services/redux/action/todos';
-import { TTodoCard } from '../../utils/types';
+import { boundTodoActions } from '../../../services/redux/action/todos';
+import { TTodoCard } from '../../../utils/types';
 import './column-card.scss';
 import { FiTrash } from '@react-icons/all-files/fi/FiTrash';
 import { FiType } from '@react-icons/all-files/fi/FiType';

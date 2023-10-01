@@ -1,8 +1,8 @@
 import { FiEdit } from '@react-icons/all-files/fi/FiEdit';
 import { FiSave } from '@react-icons/all-files/fi/FiSave';
 import { FiTrash } from '@react-icons/all-files/fi/FiTrash';
-import { boundTodoActions } from '../../services/redux/action/todos';
-import { TSubComment } from '../../utils/types';
+import { boundTodoActions } from '../../../services/redux/action/todos';
+import { TSubComment } from '../../../utils/types';
 import { useState } from 'react';
 
 type Props = {

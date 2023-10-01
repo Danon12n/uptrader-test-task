@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import ColumnCard from '../card/column-card';
+import ColumnCard from './card/column-card';
 import './column.scss';
 import { TStatus, TTodoCard } from '../../utils/types';
 import { useSelector } from 'react-redux';
@@ -23,7 +23,7 @@ export default function Column({ title = 'Queue' }: Props) {
       status: title,
       priority: 'medium',
       creationDate: new Date(),
-      comments: ['lol kek'],
+      comments: [{ text: 'hey bitch', date: new Date(12321312323), subComments: [] }],
       attachedFiles: ['cool file'],
       subTodos: [
         { title: 'job1', done: false },

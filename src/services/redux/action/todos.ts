@@ -1,5 +1,5 @@
 import { bindActionCreators } from 'redux';
-import { TSubTodo, TTodoCard } from '../../../utils/types';
+import { TPriority, TSubTodo, TTodoCard } from '../../../utils/types';
 import {
   ADD_TODO,
   DELETE_TODO,
@@ -14,8 +14,41 @@ import {
   ADD_SUBCOMMENT,
   DELETE_SUBCOMMENT,
   UPDATE_SUBCOMMENT,
+  CHANGE_TODO_PRIORITY,
+  CHANGE_TODO_TITLE,
+  CHANGE_TODO_DESCRIPTION,
 } from '../action-types/todos';
 import { store } from '../store';
+
+export interface IChangeTodoDescription {
+  readonly type: typeof CHANGE_TODO_DESCRIPTION;
+  readonly payload: { number: number; description: string };
+}
+
+const doChangeTodoDescription = (number: number, description: string) => ({
+  type: CHANGE_TODO_DESCRIPTION,
+  payload: { number, description },
+});
+
+export interface IChangeTodoPriority {
+  readonly type: typeof CHANGE_TODO_PRIORITY;
+  readonly payload: { number: number; priority: TPriority };
+}
+
+const doChangeTodoPriority = (number: number, priority: TPriority) => ({
+  type: CHANGE_TODO_PRIORITY,
+  payload: { number, priority },
+});
+
+export interface IChangeTodoTitle {
+  readonly type: typeof CHANGE_TODO_TITLE;
+  readonly payload: { number: number; title: string };
+}
+
+const doChangeTodoTitle = (number: number, title: string) => ({
+  type: CHANGE_TODO_TITLE,
+  payload: { number, title },
+});
 
 export interface IAddTodo {
   readonly type: typeof ADD_TODO;
@@ -147,7 +180,10 @@ export type TTodoAction =
   | IDeleteComment
   | IAddSubComment
   | IUpdateSubComment
-  | IDeleteSubComment;
+  | IDeleteSubComment
+  | IChangeTodoPriority
+  | IChangeTodoTitle
+  | IChangeTodoDescription;
 
 export const boundTodoActions = bindActionCreators(
   {
@@ -167,6 +203,10 @@ export const boundTodoActions = bindActionCreators(
     addSubComment: doAddSubComment,
     updateSubComment: doUpdateSubComment,
     deleteSubComment: doDeleteSubComment,
+
+    changeTodoPriority: doChangeTodoPriority,
+    changeTodoTitle: doChangeTodoTitle,
+    changeTodoDescription: doChangeTodoDescription,
   },
   store.dispatch
 );

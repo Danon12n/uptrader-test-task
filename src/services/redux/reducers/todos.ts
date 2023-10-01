@@ -291,6 +291,42 @@ export function todos(state = initialState, action: TTodoAction) {
           }),
         ],
       };
+    case 'CHANGE_TODO_PRIORITY':
+      return {
+        ...state,
+        todos: [
+          ...state.todos.map((todo) => {
+            if (todo.number === action.payload.number) {
+              todo.priority = action.payload.priority;
+            }
+            return todo;
+          }),
+        ],
+      };
+    case 'CHANGE_TODO_TITLE':
+      return {
+        ...state,
+        todos: [
+          ...state.todos.map((todo) => {
+            if (todo.number === action.payload.number) {
+              todo.title = action.payload.title;
+            }
+            return todo;
+          }),
+        ],
+      };
+    case 'CHANGE_TODO_DESCRIPTION':
+      return {
+        ...state,
+        todos: [
+          ...state.todos.map((todo) => {
+            if (todo.number === action.payload.number) {
+              todo.description = action.payload.description;
+            }
+            return todo;
+          }),
+        ],
+      };
     default:
       return state;
   }

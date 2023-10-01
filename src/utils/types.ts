@@ -3,13 +3,15 @@ export type TTodoCard = {
   title: string;
   description: string;
   status: TStatus;
-  priority: 'low' | 'medium' | 'high';
+  priority: TPriority;
   creationDate: Date;
   completeDate?: Date;
   subTodos: TSubTodo[];
   comments: TComment[];
   attachedFiles?: string[];
 };
+
+export type TPriority = 'low' | 'medium' | 'high';
 
 export type TComment = {
   text: string;

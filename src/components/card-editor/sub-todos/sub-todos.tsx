@@ -1,6 +1,6 @@
-import { TSubTodo } from '../../utils/types';
+import { TSubTodo } from '../../../utils/types';
 import './sub-todos.scss';
-import { boundTodoActions } from '../../services/redux/action/todos';
+import { boundTodoActions } from '../../../services/redux/action/todos';
 import { FiTrash } from '@react-icons/all-files/fi/FiTrash';
 
 type Props = { todoNumber: number; subtodos: TSubTodo[] };
