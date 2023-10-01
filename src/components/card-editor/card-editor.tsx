@@ -12,6 +12,7 @@ import { TTodoCard } from '../../utils/types';
 import { FiEdit } from '@react-icons/all-files/fi/FiEdit';
 import { FiSave } from '@react-icons/all-files/fi/FiSave';
 import SubTodos from '../sub-todos/sub-todos';
+import Comments from '../comments/comments';
 // import Files from 'react-files';
 
 type Props = {};
@@ -140,11 +141,8 @@ export default function CardEditor({}: Props) {
           get file
         </button>
       </div> */}
-      {currentTodo.subTodos ? (
-        <SubTodos todoNumber={currentTodo.number} subtodos={currentTodo.subTodos} />
-      ) : (
-        <></>
-      )}
+      <SubTodos todoNumber={currentTodo.number} subtodos={currentTodo.subTodos} />
+      <Comments todoNumber={currentTodo.number} comments={currentTodo.comments} />
     </div>
   );
 }

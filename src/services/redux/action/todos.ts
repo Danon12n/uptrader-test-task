@@ -8,6 +8,12 @@ import {
   UPDATE_SUBTODO_STATUS,
   UPDATE_SUBTODO_TITLE,
   DELETE_SUBTODO,
+  ADD_COMMENT,
+  UPDATE_COMMENT,
+  DELETE_COMMENT,
+  ADD_SUBCOMMENT,
+  DELETE_SUBCOMMENT,
+  UPDATE_SUBCOMMENT,
 } from '../action-types/todos';
 import { store } from '../store';
 
@@ -23,6 +29,20 @@ export interface IDeleteTodo {
   readonly type: typeof DELETE_TODO;
   readonly payload: number;
 }
+
+const doAddTodo = (todo: TTodoCard) => ({
+  type: ADD_TODO,
+  payload: todo,
+});
+const doUpdateTodo = (number: number, todo: TTodoCard) => ({
+  type: UPDATE_TODO,
+  payload: { number, todo },
+});
+const doDeleteTodo = (number: number) => ({
+  type: DELETE_TODO,
+  payload: number,
+});
+
 export interface IAddSubTodo {
   readonly type: typeof ADD_SUBTODO;
   readonly payload: { number: number; subtodo: TSubTodo };
@@ -40,27 +60,6 @@ export interface IDeleteSubTodo {
   readonly payload: { number: number; index: number };
 }
 
-export type TTodoAction =
-  | IAddTodo
-  | IUpdateTodo
-  | IDeleteTodo
-  | IAddSubTodo
-  | IUpdateSubTodoStatus
-  | IUpdateSubTodoTitle
-  | IDeleteSubTodo;
-
-const doAddTodo = (todo: TTodoCard) => ({
-  type: ADD_TODO,
-  payload: todo,
-});
-const doUpdateTodo = (number: number, todo: TTodoCard) => ({
-  type: UPDATE_TODO,
-  payload: { number, todo },
-});
-const doDeleteTodo = (number: number) => ({
-  type: DELETE_TODO,
-  payload: number,
-});
 const doAddSubTodo = (number: number, subtodo: TSubTodo) => ({
   type: ADD_SUBTODO,
   payload: { number, subtodo },
@@ -78,15 +77,96 @@ const doDeleteSubTodo = (number: number, index: number) => ({
   payload: { number, index },
 });
 
+export interface IAddComment {
+  readonly type: typeof ADD_COMMENT;
+  readonly payload: { number: number; text: string };
+}
+export interface IUpdateComment {
+  readonly type: typeof UPDATE_COMMENT;
+  readonly payload: { number: number; index: number; text: string };
+}
+export interface IDeleteComment {
+  readonly type: typeof DELETE_COMMENT;
+  readonly payload: { number: number; index: number };
+}
+
+const doAddComment = (number: number, text: string) => ({
+  type: ADD_COMMENT,
+  payload: { number, text },
+});
+const doUpdateComment = (number: number, index: number, text: string) => ({
+  type: UPDATE_COMMENT,
+  payload: { number, index, text },
+});
+const doDeleteComment = (number: number, index: number) => ({
+  type: DELETE_COMMENT,
+  payload: { number, index },
+});
+
+export interface IAddSubComment {
+  readonly type: typeof ADD_SUBCOMMENT;
+  readonly payload: { number: number; commentIndex: number; text: string };
+}
+export interface IUpdateSubComment {
+  readonly type: typeof UPDATE_SUBCOMMENT;
+  readonly payload: { number: number; commentIndex: number; subCommentIndex: number; text: string };
+}
+export interface IDeleteSubComment {
+  readonly type: typeof DELETE_SUBCOMMENT;
+  readonly payload: { number: number; commentIndex: number; subCommentIndex: number };
+}
+
+const doAddSubComment = (number: number, commentIndex: number, text: string) => ({
+  type: ADD_SUBCOMMENT,
+  payload: { number, commentIndex, text },
+});
+const doUpdateSubComment = (
+  number: number,
+  commentIndex: number,
+  subCommentIndex: number,
+  text: string
+) => ({
+  type: UPDATE_SUBCOMMENT,
+  payload: { number, commentIndex, subCommentIndex, text },
+});
+const doDeleteSubComment = (number: number, commentIndex: number, subCommentIndex: number) => ({
+  type: DELETE_SUBCOMMENT,
+  payload: { number, commentIndex, subCommentIndex },
+});
+
+export type TTodoAction =
+  | IAddTodo
+  | IUpdateTodo
+  | IDeleteTodo
+  | IAddSubTodo
+  | IUpdateSubTodoStatus
+  | IUpdateSubTodoTitle
+  | IDeleteSubTodo
+  | IAddComment
+  | IUpdateComment
+  | IDeleteComment
+  | IAddSubComment
+  | IUpdateSubComment
+  | IDeleteSubComment;
+
 export const boundTodoActions = bindActionCreators(
   {
     addTodo: doAddTodo,
     updateTodo: doUpdateTodo,
     deleteTodo: doDeleteTodo,
     addSubTodo: doAddSubTodo,
+
     updateSubTodoTitle: doUpdateSubTodoTitle,
     updateSubTodoStatus: doUpdateSubTodoStatus,
     deleteSubTodo: doDeleteSubTodo,
+
+    addComment: doAddComment,
+    updateComment: doUpdateComment,
+    deleteComment: doDeleteComment,
+
+    addSubComment: doAddSubComment,
+    updateSubComment: doUpdateSubComment,
+    deleteSubComment: doDeleteSubComment,
   },
   store.dispatch
 );

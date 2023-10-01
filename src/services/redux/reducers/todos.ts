@@ -1,4 +1,4 @@
-import { TTodoCard } from '../../../utils/types';
+import { TComment, TSubComment, TTodoCard } from '../../../utils/types';
 import { TTodoAction } from '../action/todos';
 
 export type TTodosState = {
@@ -16,6 +16,7 @@ const initialState: TTodosState = {
       priority: 'low',
       creationDate: new Date(1695559452232),
       subTodos: [],
+      comments: [],
     },
     {
       number: 2,
@@ -25,6 +26,7 @@ const initialState: TTodosState = {
       priority: 'medium',
       creationDate: new Date(1695669452232),
       subTodos: [],
+      comments: [],
     },
     {
       number: 3,
@@ -34,6 +36,7 @@ const initialState: TTodosState = {
       priority: 'high',
       creationDate: new Date(1695779452232),
       subTodos: [],
+      comments: [],
     },
     {
       number: 4,
@@ -43,6 +46,7 @@ const initialState: TTodosState = {
       priority: 'low',
       creationDate: new Date(1695889452232),
       subTodos: [],
+      comments: [],
     },
     {
       number: 5,
@@ -52,6 +56,7 @@ const initialState: TTodosState = {
       priority: 'medium',
       creationDate: new Date(1695999452232),
       subTodos: [],
+      comments: [],
     },
     {
       number: 6,
@@ -61,6 +66,7 @@ const initialState: TTodosState = {
       priority: 'high',
       creationDate: new Date(1695479452232),
       subTodos: [],
+      comments: [],
     },
     {
       number: 7,
@@ -70,6 +76,7 @@ const initialState: TTodosState = {
       priority: 'low',
       creationDate: new Date(1694459452232),
       subTodos: [],
+      comments: [],
     },
     {
       number: 8,
@@ -79,6 +86,7 @@ const initialState: TTodosState = {
       priority: 'medium',
       creationDate: new Date(1693359452232),
       subTodos: [],
+      comments: [],
     },
     {
       number: 9,
@@ -88,6 +96,7 @@ const initialState: TTodosState = {
       priority: 'high',
       creationDate: new Date(1692259452232),
       subTodos: [],
+      comments: [],
     },
     {
       number: 10,
@@ -97,6 +106,7 @@ const initialState: TTodosState = {
       priority: 'high',
       creationDate: new Date(1691159452232),
       subTodos: [],
+      comments: [],
     },
   ],
 };
@@ -138,7 +148,7 @@ export function todos(state = initialState, action: TTodoAction) {
         todos: [
           ...state.todos.map((todo) => {
             if (todo.number === action.payload.number) {
-              todo.subTodos?.push(action.payload.subtodo);
+              todo.subTodos.push(action.payload.subtodo);
             }
             return todo;
           }),
@@ -150,7 +160,7 @@ export function todos(state = initialState, action: TTodoAction) {
         todos: [
           ...state.todos.map((todo) => {
             if (todo.number === action.payload.number) {
-              if (todo.subTodos) todo.subTodos[action.payload.index].title = action.payload.title;
+              todo.subTodos[action.payload.index].title = action.payload.title;
             }
             return todo;
           }),
@@ -162,9 +172,7 @@ export function todos(state = initialState, action: TTodoAction) {
         todos: [
           ...state.todos.map((todo) => {
             if (todo.number === action.payload.number) {
-              if (todo.subTodos)
-                todo.subTodos[action.payload.index].done =
-                  !todo.subTodos[action.payload.index].done;
+              todo.subTodos[action.payload.index].done = !todo.subTodos[action.payload.index].done;
             }
             return todo;
           }),
@@ -176,7 +184,108 @@ export function todos(state = initialState, action: TTodoAction) {
         todos: [
           ...state.todos.map((todo) => {
             if (todo.number === action.payload.number) {
-              todo.subTodos?.splice(action.payload.index, 1);
+              todo.subTodos.splice(action.payload.index, 1);
+            }
+            return todo;
+          }),
+        ],
+      };
+
+    case 'ADD_COMMENT':
+      const newComment: TComment = {
+        text: action.payload.text,
+        date: new Date(),
+        subComments: [],
+      };
+      return {
+        ...state,
+        todos: [
+          ...state.todos.map((todo) => {
+            if (todo.number === action.payload.number) {
+              todo.comments.push({ ...newComment });
+            }
+            return todo;
+          }),
+        ],
+      };
+    case 'UPDATE_COMMENT':
+      return {
+        ...state,
+        todos: [
+          ...state.todos.map((todo) => {
+            if (todo.number === action.payload.number) {
+              todo.comments[action.payload.index].text = action.payload.text;
+            }
+            return todo;
+          }),
+        ],
+      };
+    case 'DELETE_COMMENT':
+      return {
+        ...state,
+        todos: [
+          ...state.todos.map((todo) => {
+            if (todo.number === action.payload.number) {
+              todo.comments.splice(action.payload.index, 1);
+            }
+            return todo;
+          }),
+        ],
+      };
+    case 'ADD_SUBCOMMENT':
+      const newSubComment: TSubComment = {
+        text: action.payload.text,
+        date: new Date(),
+      };
+      return {
+        ...state,
+        todos: [
+          ...state.todos.map((todo) => {
+            if (todo.number === action.payload.number) {
+              todo.comments = todo.comments.map((comment, index) => {
+                if (index === action.payload.commentIndex) {
+                  comment.subComments.push(newSubComment);
+                }
+                return comment;
+              });
+            }
+            return todo;
+          }),
+        ],
+      };
+    case 'UPDATE_SUBCOMMENT':
+      return {
+        ...state,
+        todos: [
+          ...state.todos.map((todo) => {
+            if (todo.number === action.payload.number) {
+              todo.comments = todo.comments.map((comment, index) => {
+                if (index === action.payload.commentIndex) {
+                  comment.subComments[action.payload.subCommentIndex].text = action.payload.text;
+                  comment.subComments[action.payload.subCommentIndex].date = new Date();
+                }
+                return comment;
+              });
+            }
+            return todo;
+          }),
+        ],
+      };
+
+    case 'DELETE_SUBCOMMENT':
+      return {
+        ...state,
+        todos: [
+          ...state.todos.map((todo) => {
+            if (todo.number === action.payload.number) {
+              todo.comments = todo.comments.map((comment, index) => {
+                if (index === action.payload.commentIndex) {
+                  console.log(comment.subComments);
+
+                  comment.subComments.splice(action.payload.subCommentIndex, 1);
+                }
+                return comment;
+              });
             }
             return todo;
           }),

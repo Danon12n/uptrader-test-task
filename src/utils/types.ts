@@ -7,8 +7,19 @@ export type TTodoCard = {
   creationDate: Date;
   completeDate?: Date;
   subTodos: TSubTodo[];
-  comments?: string[];
+  comments: TComment[];
   attachedFiles?: string[];
+};
+
+export type TComment = {
+  text: string;
+  date: Date;
+  subComments: TSubComment[];
+};
+
+export type TSubComment = {
+  text: string;
+  date: Date;
 };
 
 export type TSubTodo = {
