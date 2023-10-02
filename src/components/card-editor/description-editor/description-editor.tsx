@@ -39,10 +39,10 @@ export default function DescriptionEditor({ todoNumber, description }: Props) {
           <TextEditor editorRef={editorRef} description={description} height={300} />
           <div className='cardEditor__description__buttons'>
             <Button type='secondary' onClick={editorSave}>
-              Save
+              save
             </Button>
             <Button type='secondary' onClick={editorClose}>
-              Close
+              close
             </Button>
           </div>
         </>

@@ -44,7 +44,7 @@ export default function SubTodos({ todoNumber, subtodos }: Props) {
         );
       })}
       <Button type='secondary' onClick={addSubTodo}>
-        add SubTodo
+        add subtodo
       </Button>
     </div>
   );

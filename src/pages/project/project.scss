@@ -1,9 +1,10 @@
 .topMenu__container {
   display: flex;
   justify-content: space-around;
+  align-items: center;
 
   font-size: 28px;
-  color: rgb(0, 0, 0);
+  color: black;
 
   background: #ece8df;
 }
@@ -36,5 +37,19 @@
   }
   to {
     transform: translateY(-10px);
+  }
+}
+
+@media (max-width: 730px) {
+  .topMenu__container {
+    font-size: 16px;
+  }
+
+  .link {
+    font-size: 16px;
+  }
+
+  .columns__container {
+    overflow-x: scroll;
   }
 }

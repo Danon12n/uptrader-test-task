@@ -75,7 +75,7 @@ export default function SubComments({ todoNumber, commentIndex, subComments }: P
           boundTodoActions.addSubComment(todoNumber, commentIndex, '');
         }}
       >
-        Add Comment
+        add subcomment
       </Button>
     </div>
   );

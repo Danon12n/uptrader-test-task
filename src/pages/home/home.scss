@@ -12,6 +12,7 @@
 
 .projects__title {
   font-size: 50px;
+  font-weight: bold;
 }
 
 .projects__list {
@@ -34,7 +35,6 @@
   text-decoration: none;
   font-size: 30px;
   color: black;
-  font-weight: bold;
 }
 
 .projects__list__link:hover {
@@ -44,4 +44,36 @@
 .projectCreator {
   display: flex;
   gap: 20px;
+}
+
+@media (max-width: 700px) {
+  .projects__title {
+    font-size: 30px;
+  }
+
+  .projects__list__link {
+    text-decoration: none;
+    font-size: 20px;
+    color: black;
+  }
+
+  .projects__list {
+    width: 100%;
+  }
+}
+
+@media (max-width: 300px) {
+  .projects__title {
+    font-size: 20px;
+  }
+
+  .projects__list__link {
+    text-decoration: none;
+    font-size: 16px;
+    color: black;
+  }
+
+  .projects__list {
+    width: 100%;
+  }
 }

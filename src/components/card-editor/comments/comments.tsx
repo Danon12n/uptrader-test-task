@@ -67,7 +67,7 @@ export default function Comments({ todoNumber, comments }: Props) {
                     setshowSubComments(commentIndex);
                   }}
                 >
-                  Show comments
+                  show comments
                 </p>
               ) : (
                 <p
@@ -75,7 +75,7 @@ export default function Comments({ todoNumber, comments }: Props) {
                     setshowSubComments(-1);
                   }}
                 >
-                  Hide comments
+                  hide comments
                 </p>
               )}
             </div>
@@ -95,7 +95,7 @@ export default function Comments({ todoNumber, comments }: Props) {
           boundTodoActions.addComment(todoNumber, '');
         }}
       >
-        Add Comment
+        add comment
       </Button>
     </div>
   );

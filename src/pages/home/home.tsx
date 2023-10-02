@@ -57,6 +57,7 @@ export default function HomePage() {
           <div className='projectCreator'>
             <input ref={inputRef} placeholder='Enter Project name...' />
             <Button
+              type='secondary'
               onClick={() => {
                 if (inputRef.current) {
                   const newProjectId = uuidv4();
@@ -74,6 +75,7 @@ export default function HomePage() {
               Create
             </Button>
             <Button
+              type='secondary'
               onClick={() => {
                 setShowProjCreator(false);
               }}
@@ -83,6 +85,7 @@ export default function HomePage() {
           </div>
         ) : (
           <Button
+            type='secondary'
             onClick={() => {
               setShowProjCreator(true);
             }}

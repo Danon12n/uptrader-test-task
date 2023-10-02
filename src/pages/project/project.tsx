@@ -1,4 +1,3 @@
-// type Props = {}
 import { DragDropContext, DropResult } from 'react-beautiful-dnd';
 
 import './project.scss';
@@ -25,7 +24,6 @@ export default function ProjectPage() {
   const currentProject = projetsMeta.find((project) => project.id === id);
 
   useEffect(() => {
-    console.log('load project');
     if (id && !isTodoLoaded) {
       boundTodoActions.doLoadTodo(true);
       boundTodoActions.setTodos(getProject(id));
@@ -33,8 +31,6 @@ export default function ProjectPage() {
   }, []);
 
   useEffect(() => {
-    console.log('save project');
-
     if (id) {
       saveProject(id, { todos, freeTodoNumbers, isTodoLoaded });
     }
@@ -46,10 +42,8 @@ export default function ProjectPage() {
     const { source, destination } = result;
 
     if (source.droppableId !== destination.droppableId) {
-      console.log('diffent columns');
       boundTodoActions.changeTodoStatus(source.index, destination.droppableId as TStatus);
     } else {
-      console.log('same column');
     }
   };
   return (

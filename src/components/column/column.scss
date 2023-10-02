@@ -46,3 +46,26 @@
 .column__button:active {
   opacity: 0.5;
 }
+
+@media (max-width: 1350px) {
+  .column {
+    width: 300px;
+  }
+}
+@media (max-width: 1030px) {
+  .column {
+    width: 200px;
+  }
+}
+
+@media (max-width: 730px) {
+  .column {
+    width: 150px;
+  }
+
+  .column__title {
+    font-size: 20px;
+
+    margin: 0;
+  }
+}

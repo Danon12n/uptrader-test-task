@@ -25,3 +25,10 @@
   margin: 0;
   padding: 0;
 }
+
+@media (max-width: 760px) {
+  .cardEditor__container {
+    width: 100%;
+    min-width: 200px;
+  }
+}

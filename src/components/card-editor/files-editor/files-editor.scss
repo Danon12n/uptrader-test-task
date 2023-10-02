@@ -37,3 +37,9 @@
   top: 0;
   right: 0;
 }
+
+@media (max-width: 760px) {
+  .files-dropzone-gallery {
+    width: 200px;
+  }
+}
