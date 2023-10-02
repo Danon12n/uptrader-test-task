@@ -1,9 +1,8 @@
 import { bindActionCreators } from 'redux';
-import { TPriority, TStatus, TSubTodo, TTodoCard } from '../../../utils/types';
+import { TPriority, TProject, TStatus, TSubTodo, TTodoCard } from '../../../utils/types';
 import {
   ADD_TODO,
   DELETE_TODO,
-  UPDATE_TODO,
   ADD_SUBTODO,
   UPDATE_SUBTODO_STATUS,
   UPDATE_SUBTODO_TITLE,
@@ -20,8 +19,27 @@ import {
   CHANGE_TODO_STATUS,
   ADD_ATTACHED_FILE,
   DELETE_ATTACHED_FILE,
+  SET_TODOS,
+  LOAD_TODO,
 } from '../action-types/todos';
 import { store } from '../store';
+
+export interface ILoadTodo {
+  readonly type: typeof LOAD_TODO;
+  readonly payload: { isActive: boolean };
+}
+const doLoadTodo = (isActive: boolean) => ({
+  type: LOAD_TODO,
+  payload: { isActive },
+});
+export interface ISetTodos {
+  readonly type: typeof SET_TODOS;
+  readonly payload: { project: TProject };
+}
+const doSetTodos = (project: TProject) => ({
+  type: SET_TODOS,
+  payload: { project },
+});
 
 export interface IAddAttachedFile {
   readonly type: typeof ADD_ATTACHED_FILE;
@@ -85,10 +103,7 @@ export interface IAddTodo {
   readonly type: typeof ADD_TODO;
   readonly payload: TTodoCard;
 }
-export interface IUpdateTodo {
-  readonly type: typeof UPDATE_TODO;
-  readonly payload: { number: number; todo: TTodoCard };
-}
+
 export interface IDeleteTodo {
   readonly type: typeof DELETE_TODO;
   readonly payload: number;
@@ -98,10 +113,7 @@ const doAddTodo = (todo: TTodoCard) => ({
   type: ADD_TODO,
   payload: todo,
 });
-const doUpdateTodo = (number: number, todo: TTodoCard) => ({
-  type: UPDATE_TODO,
-  payload: { number, todo },
-});
+
 const doDeleteTodo = (number: number) => ({
   type: DELETE_TODO,
   payload: number,
@@ -200,7 +212,6 @@ const doDeleteSubComment = (number: number, commentIndex: number, subCommentInde
 
 export type TTodoAction =
   | IAddTodo
-  | IUpdateTodo
   | IDeleteTodo
   | IAddSubTodo
   | IUpdateSubTodoStatus
@@ -217,12 +228,13 @@ export type TTodoAction =
   | IChangeTodoDescription
   | IChangeTodoStatus
   | IAddAttachedFile
-  | IDeleteAttachedFile;
+  | IDeleteAttachedFile
+  | ISetTodos
+  | ILoadTodo;
 
 export const boundTodoActions = bindActionCreators(
   {
     addTodo: doAddTodo,
-    updateTodo: doUpdateTodo,
     deleteTodo: doDeleteTodo,
     addSubTodo: doAddSubTodo,
 
@@ -245,6 +257,9 @@ export const boundTodoActions = bindActionCreators(
 
     addAttachedFile: doAddAttachedFile,
     deleteAttachedFile: doDeleteAttachedFile,
+
+    setTodos: doSetTodos,
+    doLoadTodo: doLoadTodo,
   },
   store.dispatch
 );

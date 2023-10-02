@@ -3,13 +3,38 @@ import { DragDropContext, DropResult } from 'react-beautiful-dnd';
 
 import './project.scss';
 import Column from '../../components/column/column';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { boundTodoActions } from '../../services/redux/action/todos';
 import { timeOptions } from '../../utils/constants';
 import { TStatus } from '../../utils/types';
 import CardSearch from '../../components/card-search/card-search';
+import { useEffect } from 'react';
+import { getProject, saveProject } from '../../utils/localStorage';
+import { useSelector } from 'react-redux';
+import { TStore } from '../../services/redux/reducers';
+import { TTodosState } from '../../services/redux/reducers/todos';
 
 export default function ProjectPage() {
+  const { id } = useParams();
+  const { todos, freeTodoNumbers, isTodoLoaded } = useSelector<TStore, TTodosState>(
+    (state) => state.todos
+  );
+  useEffect(() => {
+    console.log('load project');
+    if (id && !isTodoLoaded) {
+      boundTodoActions.doLoadTodo(true);
+      boundTodoActions.setTodos(getProject(id));
+    }
+  }, []);
+
+  useEffect(() => {
+    console.log('save project');
+
+    if (id) {
+      saveProject(id, { todos, freeTodoNumbers, isTodoLoaded });
+    }
+  }, [todos, freeTodoNumbers]);
+
   const onDragEnd = (result: DropResult) => {
     if (!result.destination) return;
 
@@ -25,7 +50,13 @@ export default function ProjectPage() {
   return (
     <>
       <div className='topMenu__container'>
-        <Link className='link' to={'/'}>
+        <Link
+          className='link'
+          to={'/'}
+          onClick={() => {
+            boundTodoActions.doLoadTodo(false);
+          }}
+        >
           <p>Home</p>
         </Link>
         <p>Project Title</p>

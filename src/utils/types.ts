@@ -1,11 +1,13 @@
+import { TTodosState } from '../services/redux/reducers/todos';
+
 export type TTodoCard = {
   number: number;
   title: string;
   description: string;
   status: TStatus;
   priority: TPriority;
-  creationDate: Date;
-  completeDate?: Date;
+  creationDate: string;
+  completeDate?: string;
   subTodos: TSubTodo[];
   comments: TComment[];
   attachedFiles: string[];
@@ -30,3 +32,9 @@ export type TSubTodo = {
 };
 
 export type TStatus = 'Queue' | 'Development' | 'Done';
+
+export type TPorjectMeta = {
+  id: string;
+  title: string;
+};
+export type TProject = TTodosState;

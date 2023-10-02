@@ -7,6 +7,7 @@ import { TTodosState } from '../../services/redux/reducers/todos';
 import { TStore } from '../../services/redux/reducers';
 import { boundTodoActions } from '../../services/redux/action/todos';
 import { Droppable } from 'react-beautiful-dnd';
+import { timeOptions } from '../../utils/constants';
 
 type Props = {
   title: TStatus;
@@ -24,12 +25,12 @@ export default function Column({ title = 'Queue' }: Props) {
       description: '',
       status: title,
       priority: 'low',
-      creationDate: new Date(),
+      creationDate: new Date().toLocaleDateString([], timeOptions),
       comments: [],
       attachedFiles: [],
       subTodos: [],
     };
-    if (title === 'Done') newCard.completeDate = new Date();
+    if (title === 'Done') newCard.completeDate = new Date().toLocaleDateString([], timeOptions);
     boundTodoActions.addTodo(newCard);
   };
 

@@ -1,126 +1,18 @@
+import { timeOptions } from '../../../utils/constants';
 import { TComment, TSubComment, TTodoCard } from '../../../utils/types';
 import { TTodoAction } from '../action/todos';
 
 export type TTodosState = {
+  isTodoLoaded: boolean;
   todos: TTodoCard[];
+  freeTodoNumbers: number[];
 };
 
 const freeTodoNumbers: number[] = [];
 const initialState: TTodosState = {
-  todos: [
-    {
-      number: 1,
-      title: 'Eat',
-      description: '',
-      status: 'Queue',
-      priority: 'low',
-      creationDate: new Date(1695559452232),
-      subTodos: [],
-      comments: [],
-      attachedFiles: [],
-    },
-    {
-      number: 2,
-      title: 'Sleep',
-      description: '',
-      status: 'Done',
-      priority: 'medium',
-      creationDate: new Date(1695669452232),
-      completeDate: new Date(1696769452232),
-      subTodos: [],
-      comments: [],
-      attachedFiles: [],
-    },
-    {
-      number: 3,
-      title: 'Work',
-      description: '',
-      status: 'Queue',
-      priority: 'high',
-      creationDate: new Date(1695779452232),
-      subTodos: [],
-      comments: [],
-      attachedFiles: [],
-    },
-    {
-      number: 4,
-      title: 'More Work',
-      description: '',
-      status: 'Done',
-      priority: 'low',
-      creationDate: new Date(1695889452232),
-      completeDate: new Date(1696769452232),
-      subTodos: [],
-      comments: [],
-      attachedFiles: [],
-    },
-    {
-      number: 5,
-      title: 'More Eat',
-      description: '',
-      status: 'Development',
-      priority: 'medium',
-      creationDate: new Date(1695999452232),
-      subTodos: [],
-      comments: [],
-      attachedFiles: [],
-    },
-    {
-      number: 6,
-      title: 'More Sleep',
-      description: '',
-      status: 'Queue',
-      priority: 'high',
-      creationDate: new Date(1695479452232),
-      subTodos: [],
-      comments: [],
-      attachedFiles: [],
-    },
-    {
-      number: 7,
-      title: 'Work and Sleep',
-      description: '',
-      status: 'Queue',
-      priority: 'low',
-      creationDate: new Date(1694459452232),
-      subTodos: [],
-      comments: [],
-      attachedFiles: [],
-    },
-    {
-      number: 8,
-      title: 'sleep and sleep',
-      description: '',
-      status: 'Development',
-      priority: 'medium',
-      creationDate: new Date(1693359452232),
-      subTodos: [],
-      comments: [],
-      attachedFiles: [],
-    },
-    {
-      number: 9,
-      title: 'Eat and Eat',
-      description: '',
-      status: 'Queue',
-      priority: 'high',
-      creationDate: new Date(1692259452232),
-      subTodos: [],
-      comments: [],
-      attachedFiles: [],
-    },
-    {
-      number: 10,
-      title: 'Do some foood',
-      description: '',
-      status: 'Development',
-      priority: 'high',
-      creationDate: new Date(1691159452232),
-      subTodos: [],
-      comments: [],
-      attachedFiles: [],
-    },
-  ],
+  isTodoLoaded: false,
+  freeTodoNumbers: [],
+  todos: [],
 };
 
 export function todos(state = initialState, action: TTodoAction) {
@@ -134,13 +26,6 @@ export function todos(state = initialState, action: TTodoAction) {
         freeTodoNumbers.shift();
       }
       return { ...state, todos: [...state.todos, newTodo] };
-    case 'UPDATE_TODO':
-      const updatedTodos = [...state.todos].filter((todo) => todo.number !== action.payload.number);
-      updatedTodos.push(action.payload.todo);
-      return {
-        ...state,
-        todos: [...updatedTodos],
-      };
     case 'DELETE_TODO':
       const newTodos = [...state.todos].filter((todo) => {
         if (todo.number === action.payload) {
@@ -347,7 +232,7 @@ export function todos(state = initialState, action: TTodoAction) {
             if (todo.number === action.payload.number) {
               todo.status = action.payload.status;
               if (action.payload.status === 'Done') {
-                todo.completeDate = new Date();
+                todo.completeDate = new Date().toLocaleDateString([], timeOptions);
               } else {
                 todo.completeDate = undefined;
               }
@@ -379,6 +264,17 @@ export function todos(state = initialState, action: TTodoAction) {
             return todo;
           }),
         ],
+      };
+    case 'SET_TODOS':
+      return {
+        ...state,
+        todos: [...action.payload.project.todos],
+        freeTodoNumbers: [...action.payload.project.freeTodoNumbers],
+      };
+    case 'LOAD_TODO':
+      return {
+        ...state,
+        isTodoLoaded: action.payload.isActive,
       };
     default:
       return state;

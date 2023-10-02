@@ -5,3 +5,5 @@ export const timeOptions: Intl.DateTimeFormatOptions = {
   month: 'numeric',
   year: 'numeric',
 };
+
+export const LOCALSTORAGE_PROJECTS_IDS_KEY = 'projectsIDs';

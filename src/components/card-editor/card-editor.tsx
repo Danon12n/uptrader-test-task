@@ -21,17 +21,20 @@ export default function CardEditor({}: Props) {
 
   const { todos } = useSelector<TStore, TTodosState>((state) => state.todos);
   const currentTodo: TTodoCard = { ...todos.find((todo) => todo.number === +number) } as TTodoCard;
-
-  if (!currentTodo) return <h1>Todo wasnt found!</h1>;
+  console.log(currentTodo);
+  if (!currentTodo || Object.keys(currentTodo).length === 0) return <h1>loading...</h1>;
 
   const getWorkTime = () => {
     // Тут жалуется на вычитание дат
     if (currentTodo.status === 'Done') {
-      // @ts-ignore:
-      return (currentTodo.completeDate - currentTodo.creationDate) / (60 * 60 * 24 * 1000);
+      return (
+        // @ts-ignore:
+        (new Date(currentTodo.completeDate) - new Date(currentTodo.creationDate)) /
+        (60 * 60 * 24 * 1000)
+      );
     }
     // @ts-ignore:
-    return (new Date() - currentTodo.creationDate) / (60 * 60 * 24 * 1000);
+    return (new Date() - new Date(currentTodo.creationDate)) / (60 * 60 * 24 * 1000);
   };
 
   return (
@@ -42,7 +45,7 @@ export default function CardEditor({}: Props) {
       <PriorityEditor priority={currentTodo.priority} todoNumber={currentTodo.number} />
       <p>
         <strong>Creation Date:</strong>{' '}
-        {currentTodo.creationDate.toLocaleDateString([], timeOptions)}
+        {new Date(currentTodo.creationDate).toLocaleDateString([], timeOptions)}
       </p>
       <p>
         <strong>Time in work:</strong> {`${Math.floor(getWorkTime())} days`}
@@ -50,7 +53,7 @@ export default function CardEditor({}: Props) {
       {currentTodo.completeDate && (
         <p>
           <strong>Complete Date:</strong>
-          {currentTodo.completeDate?.toLocaleDateString([], timeOptions)}
+          {new Date(currentTodo.completeDate).toLocaleDateString([], timeOptions)}
         </p>
       )}
 

@@ -4,6 +4,7 @@ import { FiTrash } from '@react-icons/all-files/fi/FiTrash';
 import { boundTodoActions } from '../../../services/redux/action/todos';
 import { TSubComment } from '../../../utils/types';
 import { useState } from 'react';
+import { timeOptions } from '../../../utils/constants';
 
 type Props = {
   todoNumber: number;
@@ -60,13 +61,15 @@ export default function SubComments({ todoNumber, commentIndex, subComments }: P
                 />
               </div>
             </div>
-            <div className='comment__date'>{subComment.date.toLocaleDateString()}</div>
+            <div className='comment__date'>
+              {new Date(subComment.date).toLocaleDateString([], timeOptions)}
+            </div>
           </div>
         );
       })}
       <button
         onClick={() => {
-          boundTodoActions.addSubComment(todoNumber, commentIndex, `${Math.random()}shit`);
+          boundTodoActions.addSubComment(todoNumber, commentIndex, '');
         }}
       >
         Add Comment

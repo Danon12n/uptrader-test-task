@@ -1,0 +1,16 @@
+.button {
+  background: #e1d7cd;
+  border: none;
+  outline: none;
+  border-radius: 15px;
+  padding: 15px 5px;
+  transition: 0.25s ease-in-out;
+}
+
+.button:hover {
+  background: #e0d1c2;
+}
+
+.button:active {
+  opacity: 0.5;
+}

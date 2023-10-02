@@ -6,6 +6,7 @@ import { FiEdit } from '@react-icons/all-files/fi/FiEdit';
 import { FiSave } from '@react-icons/all-files/fi/FiSave';
 import { FiTrash } from '@react-icons/all-files/fi/FiTrash';
 import SubComments from '../sub-comments/sub-comments';
+import { timeOptions } from '../../../utils/constants';
 
 type Props = { todoNumber: number; comments: TComment[] };
 
@@ -58,7 +59,7 @@ export default function Comments({ todoNumber, comments }: Props) {
               </div>
             </div>
             <div className='comment__date'>
-              <p>{comment.date.toLocaleDateString()}</p>
+              <p>{new Date(comment.date).toLocaleDateString([], timeOptions)}</p>
               {showSubComments !== commentIndex ? (
                 <p
                   onClick={() => {
@@ -89,7 +90,7 @@ export default function Comments({ todoNumber, comments }: Props) {
       })}
       <button
         onClick={() => {
-          boundTodoActions.addComment(todoNumber, `${Math.random()}shit`);
+          boundTodoActions.addComment(todoNumber, '');
         }}
       >
         Add Comment

@@ -34,7 +34,7 @@ export default function ColumnCard({ card }: Props) {
             {card.attachedFiles.length !== 0 && <FiFile size={25} />}
             {card.subTodos.length !== 0 && <FiList size={25} />}
           </div>
-          <p>{card.creationDate.toLocaleDateString([], timeOptions)}</p>
+          <p>{new Date(card.creationDate).toLocaleDateString([], timeOptions)}</p>
           <p>
             <FiTrash
               size={25}
