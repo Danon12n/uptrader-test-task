@@ -4,6 +4,7 @@ import { boundTodoActions } from '../../../services/redux/action/todos';
 import TextEditor from '../text-editor/text-editor';
 import './description-editor.scss';
 import parse from 'html-react-parser';
+import Button from '../../ui/button/my-button';
 
 type Props = { todoNumber: number; description: string };
 
@@ -36,9 +37,13 @@ export default function DescriptionEditor({ todoNumber, description }: Props) {
       {showDescriptionEditor ? (
         <>
           <TextEditor editorRef={editorRef} description={description} height={300} />
-          <div>
-            <button onClick={editorSave}>Save</button>
-            <button onClick={editorClose}>Close</button>
+          <div className='cardEditor__description__buttons'>
+            <Button type='secondary' onClick={editorSave}>
+              Save
+            </Button>
+            <Button type='secondary' onClick={editorClose}>
+              Close
+            </Button>
           </div>
         </>
       ) : (

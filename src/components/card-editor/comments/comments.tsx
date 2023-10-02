@@ -7,6 +7,7 @@ import { FiSave } from '@react-icons/all-files/fi/FiSave';
 import { FiTrash } from '@react-icons/all-files/fi/FiTrash';
 import SubComments from '../sub-comments/sub-comments';
 import { timeOptions } from '../../../utils/constants';
+import Button from '../../ui/button/my-button';
 
 type Props = { todoNumber: number; comments: TComment[] };
 
@@ -88,13 +89,14 @@ export default function Comments({ todoNumber, comments }: Props) {
           </div>
         );
       })}
-      <button
+      <Button
+        type='secondary'
         onClick={() => {
           boundTodoActions.addComment(todoNumber, '');
         }}
       >
         Add Comment
-      </button>
+      </Button>
     </div>
   );
 }

@@ -6,6 +6,7 @@ import { TStore } from '../../services/redux/reducers';
 import { TTodosState } from '../../services/redux/reducers/todos';
 import { TTodoCard } from '../../utils/types';
 import { Link, useLocation } from 'react-router-dom';
+import Button from '../ui/button/my-button';
 type Props = {};
 
 export default function CardSearch({}: Props) {
@@ -119,6 +120,14 @@ export default function CardSearch({}: Props) {
               );
             })
           )}
+          <Button
+            type='primary'
+            onClick={() => {
+              setInputOnFocus(false);
+            }}
+          >
+            Back
+          </Button>
         </div>
       )}
     </div>

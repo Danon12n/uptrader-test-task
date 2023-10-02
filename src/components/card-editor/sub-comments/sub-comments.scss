@@ -1,0 +1,45 @@
+.subComment__container {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  margin-left: 15px;
+
+  margin-bottom: 10px;
+
+  gap: 5px;
+}
+
+.subComment {
+  display: flex;
+  justify-content: space-between;
+  font-size: 24px;
+
+  flex-direction: column;
+
+  & &__text {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px;
+    border: 1px solid black;
+
+    & .subComment__buttons {
+      display: flex;
+      gap: 10px;
+    }
+  }
+
+  & &__date {
+    display: flex;
+    justify-content: flex-end;
+    font-size: 16px;
+    color: gray;
+    text-decoration: underline;
+    gap: 22px;
+
+    p {
+      margin: 0;
+      padding: 0;
+    }
+  }
+}

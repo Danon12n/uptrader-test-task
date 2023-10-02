@@ -5,6 +5,8 @@ import { boundTodoActions } from '../../../services/redux/action/todos';
 import { TSubComment } from '../../../utils/types';
 import { useState } from 'react';
 import { timeOptions } from '../../../utils/constants';
+import './sub-comments.scss';
+import Button from '../../ui/button/my-button';
 
 type Props = {
   todoNumber: number;
@@ -15,11 +17,11 @@ type Props = {
 export default function SubComments({ todoNumber, commentIndex, subComments }: Props) {
   const [editingSubComment, setEditingSubComment] = useState(-1);
   return (
-    <div>
+    <div className='subComment__container'>
       {subComments.map((subComment, subCommentIndex) => {
         return (
-          <div className='comment'>
-            <div className='comment__text'>
+          <div className='subComment'>
+            <div className='subComment__text'>
               {editingSubComment === commentIndex ? (
                 <input
                   type='text'
@@ -36,7 +38,7 @@ export default function SubComments({ todoNumber, commentIndex, subComments }: P
               ) : (
                 subComment.text
               )}
-              <div className='comment__buttons'>
+              <div className='subComment__buttons'>
                 {editingSubComment === commentIndex ? (
                   <FiSave
                     onClick={() => {
@@ -61,19 +63,20 @@ export default function SubComments({ todoNumber, commentIndex, subComments }: P
                 />
               </div>
             </div>
-            <div className='comment__date'>
+            <div className='subComment__date'>
               {new Date(subComment.date).toLocaleDateString([], timeOptions)}
             </div>
           </div>
         );
       })}
-      <button
+      <Button
+        type='secondary'
         onClick={() => {
           boundTodoActions.addSubComment(todoNumber, commentIndex, '');
         }}
       >
         Add Comment
-      </button>
+      </Button>
     </div>
   );
 }

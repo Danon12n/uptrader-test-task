@@ -1,4 +1,4 @@
-.button {
+.button-primary {
   background: #e1d7cd;
   border: none;
   outline: none;
@@ -7,10 +7,29 @@
   transition: 0.25s ease-in-out;
 }
 
-.button:hover {
+.button-primary:hover {
   background: #e0d1c2;
 }
 
-.button:active {
+.button-primary:active {
+  opacity: 0.5;
+}
+
+.button-secondary {
+  background: #6d98ab;
+  border: none;
+  outline: none;
+  border-radius: 15px;
+  padding: 15px;
+  transition: 0.25s ease-in-out;
+
+  font-size: 16px;
+}
+
+.button-secondary:hover {
+  background: #b1ccd7;
+}
+
+.button-secondary:active {
   opacity: 0.5;
 }

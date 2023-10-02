@@ -13,12 +13,17 @@ import { getProject, saveProject } from '../../utils/localStorage';
 import { useSelector } from 'react-redux';
 import { TStore } from '../../services/redux/reducers';
 import { TTodosState } from '../../services/redux/reducers/todos';
+import { TProjectsState } from '../../services/redux/reducers/projects';
 
 export default function ProjectPage() {
   const { id } = useParams();
   const { todos, freeTodoNumbers, isTodoLoaded } = useSelector<TStore, TTodosState>(
     (state) => state.todos
   );
+  const { projetsMeta } = useSelector<TStore, TProjectsState>((state) => state.projects);
+
+  const currentProject = projetsMeta.find((project) => project.id === id);
+
   useEffect(() => {
     console.log('load project');
     if (id && !isTodoLoaded) {
@@ -59,7 +64,7 @@ export default function ProjectPage() {
         >
           <p>Home</p>
         </Link>
-        <p>Project Title</p>
+        <p>{currentProject?.title}</p>
         <p>{new Date().toLocaleString([], timeOptions)}</p>
       </div>
       <CardSearch />

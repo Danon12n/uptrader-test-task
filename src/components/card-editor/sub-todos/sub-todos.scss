@@ -1,4 +1,9 @@
 .subTodos__container {
+  display: flex;
+  flex-direction: column;
+
+  gap: 10px;
+  width: 90%;
 }
 
 .subTodo {
@@ -6,6 +11,11 @@
   gap: 10px;
   font-size: 20px;
   justify-content: space-between;
+
+  input {
+    border-radius: 5px;
+    outline: none;
+  }
 
   p {
     margin: 0;

@@ -2,6 +2,7 @@ import { TSubTodo } from '../../../utils/types';
 import './sub-todos.scss';
 import { boundTodoActions } from '../../../services/redux/action/todos';
 import { FiTrash } from '@react-icons/all-files/fi/FiTrash';
+import Button from '../../ui/button/my-button';
 
 type Props = { todoNumber: number; subtodos: TSubTodo[] };
 
@@ -42,7 +43,9 @@ export default function SubTodos({ todoNumber, subtodos }: Props) {
           </div>
         );
       })}
-      <button onClick={addSubTodo}>add SubTodo</button>
+      <Button type='secondary' onClick={addSubTodo}>
+        add SubTodo
+      </Button>
     </div>
   );
 }

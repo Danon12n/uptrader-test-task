@@ -4,3 +4,14 @@
   padding: 5px;
   cursor: pointer;
 }
+
+.cardEditor__description {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.cardEditor__description__buttons {
+  display: flex;
+  justify-content: flex-start;
+  gap: 20px;
+}

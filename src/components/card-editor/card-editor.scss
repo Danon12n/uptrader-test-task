@@ -3,7 +3,13 @@
   flex-direction: column;
   min-width: 700px;
   min-height: 700px;
+
+  max-height: 850px;
   gap: 20px;
+
+  overflow-y: scroll;
+
+  background: #e1d7cd;
 
   p {
     padding: 0;
