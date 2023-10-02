@@ -1,0 +1,38 @@
+.files-gallery {
+  display: grid;
+  grid-template-columns: auto auto auto auto 90px;
+  grid-template-rows: 80px auto 80px;
+  column-gap: 10px;
+  row-gap: 15px;
+}
+
+.files-dropzone-gallery {
+  padding: 10px;
+  border: 1px dashed #d3d3d3;
+  min-height: 300px;
+  width: 500px;
+}
+.files-gallery-item {
+  height: 80px;
+  margin: 5px;
+}
+
+.files-dropzone-active {
+  border: 1px solid lightgreen;
+  color: lightgreen;
+}
+.image__container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+}
+.image__container img {
+  width: 100%;
+}
+.closeIcon {
+  position: absolute;
+  top: 0;
+  right: 0;
+}

@@ -41,7 +41,7 @@ export default function CardEditor({}: Props) {
       <p>
         <strong>Time in work:</strong> {`${Math.floor(getWorkTime())} days`}
       </p>
-      {/* <FilesEditor /> */}
+      <FilesEditor attachedFiles={currentTodo.attachedFiles} todoNumber={currentTodo.number} />
 
       <SubTodos todoNumber={currentTodo.number} subtodos={currentTodo.subTodos} />
       <Comments todoNumber={currentTodo.number} comments={currentTodo.comments} />

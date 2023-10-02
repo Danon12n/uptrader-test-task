@@ -1,43 +1,69 @@
+import { useState } from 'react';
 import './files-editor.scss';
 import Files from 'react-files';
+import { FiX } from '@react-icons/all-files/fi/FiX';
+import { boundTodoActions } from '../../../services/redux/action/todos';
+import Modal from '../../modal/modal';
 
-type Props = { attachedFiles: []; todoNumber: number };
+type Props = { attachedFiles: string[]; todoNumber: number };
 
 export default function FilesEditor({ attachedFiles, todoNumber }: Props) {
-  const handleChange = (files) => {
-    console.log(files);
-    localStorage.setItem('file1', files[0].toString());
-  };
-
-  const handleError = (error, file) => {
-    console.log('error code ' + error.code + ': ' + error.message);
+  const [showPicture, setShowPicture] = useState(-1);
+  const handleChange = (newFiles) => {
+    newFiles.map((file) => {
+      boundTodoActions.addAttachedFile(todoNumber, file.preview.url);
+    });
   };
 
   return (
     <div>
       <p>
-        Files Attached:
-        {attachedFiles ? attachedFiles : 'no files attached'}{' '}
+        <strong>Files Attached:</strong>
       </p>
       <Files
+        className='files-dropzone-gallery'
+        dragActiveClassName='files-dropzone-active'
         onChange={handleChange}
-        onError={handleError}
-        accepts={['image/png', '.pdf', 'audio/*', '.txt', '.jpg']}
+        accepts={['image/*']}
         multiple
-        maxFileSize={10000000}
-        minFileSize={0}
-        clickable
+        maxFiles={15}
+        clickable={false}
       >
-        Drop files here or click to upload
+        {attachedFiles.length === 0 && <div>Drop images here</div>}
+        {attachedFiles.length > 0 && (
+          <div className='files-gallery'>
+            {attachedFiles.map((file, index) => (
+              <div className='image__container'>
+                <img
+                  onClick={() => {
+                    setShowPicture(index);
+                  }}
+                  key={index}
+                  className='files-gallery-item'
+                  src={file}
+                />
+                <FiX
+                  className='closeIcon'
+                  onClick={() => {
+                    boundTodoActions.deleteAttachedFile(todoNumber, index);
+                    console.log('clicck');
+                  }}
+                  size={25}
+                />
+              </div>
+            ))}
+          </div>
+        )}
       </Files>
-      <button
-        onClick={() => {
-          const file = localStorage.getItem('file1');
-          console.log(file);
-        }}
-      >
-        get file
-      </button>
+      {showPicture !== -1 && (
+        <Modal
+          onClose={() => {
+            setShowPicture(-1);
+          }}
+        >
+          <img src={attachedFiles[showPicture]} />
+        </Modal>
+      )}
     </div>
   );
 }

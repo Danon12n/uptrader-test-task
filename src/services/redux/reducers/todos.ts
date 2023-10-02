@@ -17,6 +17,7 @@ const initialState: TTodosState = {
       creationDate: new Date(1695559452232),
       subTodos: [],
       comments: [],
+      attachedFiles: [],
     },
     {
       number: 2,
@@ -27,6 +28,7 @@ const initialState: TTodosState = {
       creationDate: new Date(1695669452232),
       subTodos: [],
       comments: [],
+      attachedFiles: [],
     },
     {
       number: 3,
@@ -37,6 +39,7 @@ const initialState: TTodosState = {
       creationDate: new Date(1695779452232),
       subTodos: [],
       comments: [],
+      attachedFiles: [],
     },
     {
       number: 4,
@@ -47,6 +50,7 @@ const initialState: TTodosState = {
       creationDate: new Date(1695889452232),
       subTodos: [],
       comments: [],
+      attachedFiles: [],
     },
     {
       number: 5,
@@ -57,6 +61,7 @@ const initialState: TTodosState = {
       creationDate: new Date(1695999452232),
       subTodos: [],
       comments: [],
+      attachedFiles: [],
     },
     {
       number: 6,
@@ -67,6 +72,7 @@ const initialState: TTodosState = {
       creationDate: new Date(1695479452232),
       subTodos: [],
       comments: [],
+      attachedFiles: [],
     },
     {
       number: 7,
@@ -77,6 +83,7 @@ const initialState: TTodosState = {
       creationDate: new Date(1694459452232),
       subTodos: [],
       comments: [],
+      attachedFiles: [],
     },
     {
       number: 8,
@@ -87,6 +94,7 @@ const initialState: TTodosState = {
       creationDate: new Date(1693359452232),
       subTodos: [],
       comments: [],
+      attachedFiles: [],
     },
     {
       number: 9,
@@ -97,6 +105,7 @@ const initialState: TTodosState = {
       creationDate: new Date(1692259452232),
       subTodos: [],
       comments: [],
+      attachedFiles: [],
     },
     {
       number: 10,
@@ -107,6 +116,7 @@ const initialState: TTodosState = {
       creationDate: new Date(1691159452232),
       subTodos: [],
       comments: [],
+      attachedFiles: [],
     },
   ],
 };
@@ -334,6 +344,30 @@ export function todos(state = initialState, action: TTodoAction) {
           ...state.todos.map((todo) => {
             if (todo.number === action.payload.number) {
               todo.status = action.payload.status;
+            }
+            return todo;
+          }),
+        ],
+      };
+    case 'ADD_ATTACHED_FILE':
+      return {
+        ...state,
+        todos: [
+          ...state.todos.map((todo) => {
+            if (todo.number === action.payload.number) {
+              todo.attachedFiles.push(action.payload.url);
+            }
+            return todo;
+          }),
+        ],
+      };
+    case 'DELETE_ATTACHED_FILE':
+      return {
+        ...state,
+        todos: [
+          ...state.todos.map((todo) => {
+            if (todo.number === action.payload.number) {
+              todo.attachedFiles.splice(action.payload.index, 1);
             }
             return todo;
           }),

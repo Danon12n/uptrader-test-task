@@ -8,7 +8,7 @@ export type TTodoCard = {
   completeDate?: Date;
   subTodos: TSubTodo[];
   comments: TComment[];
-  attachedFiles?: string[];
+  attachedFiles: string[];
 };
 
 export type TPriority = 'low' | 'medium' | 'high';

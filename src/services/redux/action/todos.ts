@@ -18,8 +18,28 @@ import {
   CHANGE_TODO_TITLE,
   CHANGE_TODO_DESCRIPTION,
   CHANGE_TODO_STATUS,
+  ADD_ATTACHED_FILE,
+  DELETE_ATTACHED_FILE,
 } from '../action-types/todos';
 import { store } from '../store';
+
+export interface IAddAttachedFile {
+  readonly type: typeof ADD_ATTACHED_FILE;
+  readonly payload: { number: number; url: string };
+}
+export interface IDeleteAttachedFile {
+  readonly type: typeof DELETE_ATTACHED_FILE;
+  readonly payload: { number: number; index: number };
+}
+
+const doAddAttachedFile = (number: number, url: string) => ({
+  type: ADD_ATTACHED_FILE,
+  payload: { number, url },
+});
+const doDeleteAttachedFile = (number: number, index: number) => ({
+  type: DELETE_ATTACHED_FILE,
+  payload: { number, index },
+});
 
 export interface IChangeTodoStatus {
   readonly type: typeof CHANGE_TODO_STATUS;
@@ -30,6 +50,7 @@ const doChangeTodoStatus = (number: number, status: TStatus) => ({
   type: CHANGE_TODO_STATUS,
   payload: { number, status },
 });
+
 export interface IChangeTodoDescription {
   readonly type: typeof CHANGE_TODO_DESCRIPTION;
   readonly payload: { number: number; description: string };
@@ -194,7 +215,9 @@ export type TTodoAction =
   | IChangeTodoPriority
   | IChangeTodoTitle
   | IChangeTodoDescription
-  | IChangeTodoStatus;
+  | IChangeTodoStatus
+  | IAddAttachedFile
+  | IDeleteAttachedFile;
 
 export const boundTodoActions = bindActionCreators(
   {
@@ -219,6 +242,9 @@ export const boundTodoActions = bindActionCreators(
     changeTodoTitle: doChangeTodoTitle,
     changeTodoDescription: doChangeTodoDescription,
     changeTodoStatus: doChangeTodoStatus,
+
+    addAttachedFile: doAddAttachedFile,
+    deleteAttachedFile: doDeleteAttachedFile,
   },
   store.dispatch
 );
