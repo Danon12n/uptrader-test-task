@@ -2,11 +2,12 @@
 import { DragDropContext, DropResult } from 'react-beautiful-dnd';
 
 import './project.scss';
-import Column from '../components/column/column';
+import Column from '../../components/column/column';
 import { Link } from 'react-router-dom';
-import { timeOptions } from '../utils/constants';
-import { boundTodoActions } from '../services/redux/action/todos';
-import { TStatus } from '../utils/types';
+import { boundTodoActions } from '../../services/redux/action/todos';
+import { timeOptions } from '../../utils/constants';
+import { TStatus } from '../../utils/types';
+import CardSearch from '../../components/card-search/card-search';
 
 export default function ProjectPage() {
   const onDragEnd = (result: DropResult) => {
@@ -30,6 +31,7 @@ export default function ProjectPage() {
         <p>Project Title</p>
         <p>{new Date().toLocaleString([], timeOptions)}</p>
       </div>
+      <CardSearch />
       <div className='columns__container'>
         <DragDropContext onDragEnd={(result) => onDragEnd(result)}>
           <Column title='Queue' />

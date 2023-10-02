@@ -1,0 +1,67 @@
+.cardSearch__container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  padding: 20px;
+  background: #ece8df;
+}
+
+.cardSearch__input {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  background: white;
+  border-radius: 10px;
+
+  padding: 0 10px;
+
+  gap: 10px;
+}
+.cardSearch__input input {
+  border: none;
+  outline: none;
+  font-size: 20px;
+  padding: 10px 0;
+}
+.cardSearch__input input:focus {
+  border: none;
+  outline: none;
+}
+
+.cardSearch__input-focused {
+  width: 400px;
+  border: black 3px solid;
+}
+
+.cardSearch__results {
+  position: absolute;
+  top: 70px;
+
+  width: 50%;
+  height: 200px;
+  max-height: 200px;
+
+  background: white;
+  border-radius: 15px;
+
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  overflow: scroll;
+
+  gap: 10px;
+}
+
+.Link {
+  text-decoration: none;
+  font-size: 24px;
+  color: black;
+
+  transition: 0.25s;
+}
+.Link:hover {
+  text-decoration: underline;
+}

@@ -11,6 +11,7 @@ import PriorityEditor from './priority-editor/priority-editor';
 import TitleEditor from './title-editor/title-editor';
 import DescriptionEditor from './description-editor/description-editor';
 import FilesEditor from './files-editor/files-editor';
+import { timeOptions } from '../../utils/constants';
 
 type Props = {};
 
@@ -25,6 +26,10 @@ export default function CardEditor({}: Props) {
 
   const getWorkTime = () => {
     // Тут жалуется на вычитание дат
+    if (currentTodo.status === 'Done') {
+      // @ts-ignore:
+      return (currentTodo.completeDate - currentTodo.creationDate) / (60 * 60 * 24 * 1000);
+    }
     // @ts-ignore:
     return (new Date() - currentTodo.creationDate) / (60 * 60 * 24 * 1000);
   };
@@ -36,11 +41,19 @@ export default function CardEditor({}: Props) {
       <DescriptionEditor todoNumber={currentTodo.number} description={currentTodo.description} />
       <PriorityEditor priority={currentTodo.priority} todoNumber={currentTodo.number} />
       <p>
-        <strong>Creation Date:</strong> {currentTodo.creationDate.toLocaleDateString()}
+        <strong>Creation Date:</strong>{' '}
+        {currentTodo.creationDate.toLocaleDateString([], timeOptions)}
       </p>
       <p>
         <strong>Time in work:</strong> {`${Math.floor(getWorkTime())} days`}
       </p>
+      {currentTodo.completeDate && (
+        <p>
+          <strong>Complete Date:</strong>
+          {currentTodo.completeDate?.toLocaleDateString([], timeOptions)}
+        </p>
+      )}
+
       <FilesEditor attachedFiles={currentTodo.attachedFiles} todoNumber={currentTodo.number} />
 
       <SubTodos todoNumber={currentTodo.number} subtodos={currentTodo.subTodos} />

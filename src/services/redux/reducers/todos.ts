@@ -10,7 +10,7 @@ const initialState: TTodosState = {
   todos: [
     {
       number: 1,
-      title: 'new Card1',
+      title: 'Eat',
       description: '',
       status: 'Queue',
       priority: 'low',
@@ -21,18 +21,19 @@ const initialState: TTodosState = {
     },
     {
       number: 2,
-      title: 'new Card2',
+      title: 'Sleep',
       description: '',
       status: 'Done',
       priority: 'medium',
       creationDate: new Date(1695669452232),
+      completeDate: new Date(1696769452232),
       subTodos: [],
       comments: [],
       attachedFiles: [],
     },
     {
       number: 3,
-      title: 'new Card3',
+      title: 'Work',
       description: '',
       status: 'Queue',
       priority: 'high',
@@ -43,18 +44,19 @@ const initialState: TTodosState = {
     },
     {
       number: 4,
-      title: 'new Card4',
+      title: 'More Work',
       description: '',
       status: 'Done',
       priority: 'low',
       creationDate: new Date(1695889452232),
+      completeDate: new Date(1696769452232),
       subTodos: [],
       comments: [],
       attachedFiles: [],
     },
     {
       number: 5,
-      title: 'new Card5',
+      title: 'More Eat',
       description: '',
       status: 'Development',
       priority: 'medium',
@@ -65,7 +67,7 @@ const initialState: TTodosState = {
     },
     {
       number: 6,
-      title: 'new Card6',
+      title: 'More Sleep',
       description: '',
       status: 'Queue',
       priority: 'high',
@@ -76,7 +78,7 @@ const initialState: TTodosState = {
     },
     {
       number: 7,
-      title: 'new Card7',
+      title: 'Work and Sleep',
       description: '',
       status: 'Queue',
       priority: 'low',
@@ -87,7 +89,7 @@ const initialState: TTodosState = {
     },
     {
       number: 8,
-      title: 'new Card8',
+      title: 'sleep and sleep',
       description: '',
       status: 'Development',
       priority: 'medium',
@@ -98,7 +100,7 @@ const initialState: TTodosState = {
     },
     {
       number: 9,
-      title: 'new Card9',
+      title: 'Eat and Eat',
       description: '',
       status: 'Queue',
       priority: 'high',
@@ -109,7 +111,7 @@ const initialState: TTodosState = {
     },
     {
       number: 10,
-      title: 'new Card10',
+      title: 'Do some foood',
       description: '',
       status: 'Development',
       priority: 'high',
@@ -344,6 +346,11 @@ export function todos(state = initialState, action: TTodoAction) {
           ...state.todos.map((todo) => {
             if (todo.number === action.payload.number) {
               todo.status = action.payload.status;
+              if (action.payload.status === 'Done') {
+                todo.completeDate = new Date();
+              } else {
+                todo.completeDate = undefined;
+              }
             }
             return todo;
           }),

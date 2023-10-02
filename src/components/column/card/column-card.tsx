@@ -7,6 +7,7 @@ import { FiMessageSquare } from '@react-icons/all-files/fi/FiMessageSquare';
 import { FiFile } from '@react-icons/all-files/fi/FiFile';
 import { FiList } from '@react-icons/all-files/fi/FiList';
 import { Draggable } from 'react-beautiful-dnd';
+import { timeOptions } from '../../../utils/constants';
 
 type Props = { card: TTodoCard };
 
@@ -33,7 +34,7 @@ export default function ColumnCard({ card }: Props) {
             {card.attachedFiles.length !== 0 && <FiFile size={25} />}
             {card.subTodos.length !== 0 && <FiList size={25} />}
           </div>
-          <p>{card.creationDate.toLocaleDateString()}</p>
+          <p>{card.creationDate.toLocaleDateString([], timeOptions)}</p>
           <p>
             <FiTrash
               size={25}

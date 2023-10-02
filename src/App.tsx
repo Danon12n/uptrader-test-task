@@ -1,10 +1,11 @@
-import ProjectPage from './pages/project';
 import './App.scss';
 import { Route, Routes, useLocation } from 'react-router';
-import HomePage from './pages/home';
+
 import ErrorPage from './pages/error';
 import Modal from './components/modal/modal';
 import CardEditor from './components/card-editor/card-editor';
+import HomePage from './pages/home/home';
+import ProjectPage from './pages/project/project';
 
 function App() {
   const { state } = useLocation();

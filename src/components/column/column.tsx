@@ -20,19 +20,16 @@ export default function Column({ title = 'Queue' }: Props) {
   const CreateTodo = () => {
     const newCard: TTodoCard = {
       number: 1,
-      title: 'new Card',
-      description: 'asdasd',
+      title: 'New card',
+      description: '',
       status: title,
-      priority: 'medium',
+      priority: 'low',
       creationDate: new Date(),
-      comments: [{ text: 'hey bitch', date: new Date(12321312323), subComments: [] }],
-      attachedFiles: ['cool file'],
-      subTodos: [
-        { title: 'job1', done: false },
-        { title: 'job2', done: true },
-        { title: 'job3', done: false },
-      ],
+      comments: [],
+      attachedFiles: [],
+      subTodos: [],
     };
+    if (title === 'Done') newCard.completeDate = new Date();
     boundTodoActions.addTodo(newCard);
   };
 
