@@ -36,6 +36,7 @@ export default function Column({ title = 'Queue' }: Props) {
 
   return (
     <Droppable key={title} droppableId={title}>
+      {/* @ts-ignore: */}
       {(provided, snapshot) => (
         <div ref={provided.innerRef} {...provided.droppableProps} className='column'>
           <p className='column__title'>{title}</p>

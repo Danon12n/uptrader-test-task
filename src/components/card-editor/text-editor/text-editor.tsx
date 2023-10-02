@@ -13,6 +13,7 @@ export default function TextEditor({ editorRef, description, height = 300 }: Pro
     <Editor
       ref={editorRef}
       apiKey='14k18heez374wca5377x8d32unel6rxtitgd73s1efec5e3n'
+      // @ts-ignore:
       onInit={(evt, editor) => (editorRef.current = editor)}
       initialValue={`${description ? description : 'I need to do...'}`}
       init={{

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import './files-editor.scss';
+// @ts-ignore:
 import Files from 'react-files';
 import { FiX } from '@react-icons/all-files/fi/FiX';
 import { boundTodoActions } from '../../../services/redux/action/todos';
@@ -9,8 +10,8 @@ type Props = { attachedFiles: string[]; todoNumber: number };
 
 export default function FilesEditor({ attachedFiles, todoNumber }: Props) {
   const [showPicture, setShowPicture] = useState(-1);
-  const handleChange = (newFiles) => {
-    newFiles.map((file) => {
+  const handleChange = (newFiles: any) => {
+    newFiles.map((file: any) => {
       boundTodoActions.addAttachedFile(todoNumber, file.preview.url);
     });
   };
