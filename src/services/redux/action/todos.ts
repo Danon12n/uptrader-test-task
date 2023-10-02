@@ -1,5 +1,5 @@
 import { bindActionCreators } from 'redux';
-import { TPriority, TSubTodo, TTodoCard } from '../../../utils/types';
+import { TPriority, TStatus, TSubTodo, TTodoCard } from '../../../utils/types';
 import {
   ADD_TODO,
   DELETE_TODO,
@@ -17,9 +17,19 @@ import {
   CHANGE_TODO_PRIORITY,
   CHANGE_TODO_TITLE,
   CHANGE_TODO_DESCRIPTION,
+  CHANGE_TODO_STATUS,
 } from '../action-types/todos';
 import { store } from '../store';
 
+export interface IChangeTodoStatus {
+  readonly type: typeof CHANGE_TODO_STATUS;
+  readonly payload: { number: number; status: TStatus };
+}
+
+const doChangeTodoStatus = (number: number, status: TStatus) => ({
+  type: CHANGE_TODO_STATUS,
+  payload: { number, status },
+});
 export interface IChangeTodoDescription {
   readonly type: typeof CHANGE_TODO_DESCRIPTION;
   readonly payload: { number: number; description: string };
@@ -183,7 +193,8 @@ export type TTodoAction =
   | IDeleteSubComment
   | IChangeTodoPriority
   | IChangeTodoTitle
-  | IChangeTodoDescription;
+  | IChangeTodoDescription
+  | IChangeTodoStatus;
 
 export const boundTodoActions = bindActionCreators(
   {
@@ -207,6 +218,7 @@ export const boundTodoActions = bindActionCreators(
     changeTodoPriority: doChangeTodoPriority,
     changeTodoTitle: doChangeTodoTitle,
     changeTodoDescription: doChangeTodoDescription,
+    changeTodoStatus: doChangeTodoStatus,
   },
   store.dispatch
 );

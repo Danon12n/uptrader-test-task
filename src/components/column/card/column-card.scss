@@ -1,28 +1,28 @@
 .column__card {
-    padding: 5px;
-    border-radius: 15px;
-    box-shadow: 1px 1px 1px 1px #091E4240, 1px 1px 1px 1px #091E424F;
+  padding: 5px;
+  border-radius: 15px;
+  box-shadow: 1px 1px 1px 1px #091e4240, 1px 1px 1px 1px #091e424f;
 
-    background: #e1d7cd;
+  background: #e1d7cd;
+  font-family: 'Arvo', serif;
 
-
-    color: black;
+  color: black;
 }
 
 .column__card__title {
-    margin: 0;
-    padding: 5px;
-    font-size: 22px;
+  margin: 0;
+  padding: 5px;
+  font-size: 22px;
 }
 
 .column__card:hover {
-    cursor: pointer;
-    font-weight: bold;
+  cursor: pointer;
+  font-weight: bold;
 }
 
 .column__card__signsList {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 30px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 30px;
 }

@@ -327,6 +327,18 @@ export function todos(state = initialState, action: TTodoAction) {
           }),
         ],
       };
+    case 'CHANGE_TODO_STATUS':
+      return {
+        ...state,
+        todos: [
+          ...state.todos.map((todo) => {
+            if (todo.number === action.payload.number) {
+              todo.status = action.payload.status;
+            }
+            return todo;
+          }),
+        ],
+      };
     default:
       return state;
   }

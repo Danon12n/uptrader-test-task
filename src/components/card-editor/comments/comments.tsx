@@ -50,6 +50,7 @@ export default function Comments({ todoNumber, comments }: Props) {
 
                 <FiTrash
                   onClick={() => {
+                    setshowSubComments(-1);
                     boundTodoActions.deleteComment(todoNumber, commentIndex);
                   }}
                   size={25}
@@ -64,7 +65,7 @@ export default function Comments({ todoNumber, comments }: Props) {
                     setshowSubComments(commentIndex);
                   }}
                 >
-                  Показать коментарии
+                  Show comments
                 </p>
               ) : (
                 <p
@@ -72,7 +73,7 @@ export default function Comments({ todoNumber, comments }: Props) {
                     setshowSubComments(-1);
                   }}
                 >
-                  Скрыть коментарии
+                  Hide comments
                 </p>
               )}
             </div>

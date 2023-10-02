@@ -15,6 +15,8 @@ export default function DescriptionEditor({ todoNumber, description }: Props) {
     e.stopPropagation();
     if (editorRef.current) {
       setShowDescriptionEditor(false);
+      // метод getContent есть и работает, но жалуется, что его нет в current
+      // @ts-ignore:
       boundTodoActions.changeTodoDescription(todoNumber, editorRef.current.getContent());
     }
   };
@@ -35,13 +37,13 @@ export default function DescriptionEditor({ todoNumber, description }: Props) {
         <>
           <TextEditor editorRef={editorRef} description={description} height={300} />
           <div>
-            <button onClick={editorSave}>Сохранить</button>
-            <button onClick={editorClose}>Закрыть</button>
+            <button onClick={editorSave}>Save</button>
+            <button onClick={editorClose}>Close</button>
           </div>
         </>
       ) : (
         <div className='cardEditor__textEditorPreview'>
-          {description ? parse(description) : <p>Нажмите, чтобы написать описание задачи...</p>}
+          {description ? parse(description) : <p>Press to write desccription...</p>}
         </div>
       )}
     </div>
