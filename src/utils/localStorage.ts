@@ -5,7 +5,8 @@ export const getProjectsMeta = () => {
   const projectsIDs = localStorage.getItem(LOCALSTORAGE_PROJECTS_IDS_KEY);
 
   if (projectsIDs) return JSON.parse(projectsIDs);
-  else return undefined;
+  else localStorage.setItem(LOCALSTORAGE_PROJECTS_IDS_KEY, JSON.stringify([]));
+  return [];
 };
 
 export const addProjectMeta = (projectID: string, title: string) => {
