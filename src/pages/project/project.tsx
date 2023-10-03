@@ -5,23 +5,21 @@ import Column from '../../components/column/column';
 import { Link, useParams } from 'react-router-dom';
 import { boundTodoActions } from '../../services/redux/action/todos';
 import { timeOptions } from '../../utils/constants';
-import { TStatus } from '../../utils/types';
+import { TPorjectMeta, TStatus } from '../../utils/types';
 import CardSearch from '../../components/card-search/card-search';
 import { useEffect } from 'react';
-import { getProject, saveProject } from '../../utils/localStorage';
+import { getProject, getProjectsMeta, saveProject } from '../../utils/localStorage';
 import { useSelector } from 'react-redux';
 import { TStore } from '../../services/redux/reducers';
 import { TTodosState } from '../../services/redux/reducers/todos';
-import { TProjectsState } from '../../services/redux/reducers/projects';
 
 export default function ProjectPage() {
   const { id } = useParams();
   const { todos, freeTodoNumbers, isTodoLoaded } = useSelector<TStore, TTodosState>(
     (state) => state.todos
   );
-  const { projetsMeta } = useSelector<TStore, TProjectsState>((state) => state.projects);
 
-  const currentProject = projetsMeta.find((project) => project.id === id);
+  const currentProject = getProjectsMeta().find((project: TPorjectMeta) => project.id === id);
 
   useEffect(() => {
     if (id && !isTodoLoaded) {
@@ -58,7 +56,7 @@ export default function ProjectPage() {
         >
           <p>Home</p>
         </Link>
-        <p>{currentProject?.title}</p>
+        <p>{currentProject?.title ? currentProject.title : 'No title found'}</p>
         <p>{new Date().toLocaleString([], timeOptions)}</p>
       </div>
       <CardSearch />
